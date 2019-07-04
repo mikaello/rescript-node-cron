@@ -4,7 +4,8 @@
   "scripts": {
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
-    "clean": "bsb -clean-world"
+    "clean": "bsb -clean-world",
+    "test": "jest"
   },
   "keywords": [
     "BuckleScript",
@@ -18,6 +19,7 @@
   "bugs": "https://github.com/mikaello/bs-cron-node/issues",
   "license": "MIT",
   "devDependencies": {
+    "@glennsl/bs-jest": "^0.4.8",
     "bs-platform": "^5.0.4"
   }
 }

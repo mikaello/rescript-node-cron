@@ -5,6 +5,7 @@
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world",
+    "pretest": "yarn run build",
     "test": "jest"
   },
   "keywords": [

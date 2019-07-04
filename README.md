@@ -21,8 +21,15 @@ Then add `bs-cron` as a dependency to `bsconfig.json`:
 ## Example
 
 ```reason
+open BsCron
 
+// Do job every 10 minute
+let job = CronJob.makeFromString(
+    "* 10 * * * *",
+    () => { Js.log("Just doing my job") },
+)
 
+CronJob.start(job);
 ```
 
 ## Contribute

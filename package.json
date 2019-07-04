@@ -1,0 +1,23 @@
+{
+  "name": "bs-cron",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "bsb -make-world",
+    "start": "bsb -make-world -w",
+    "clean": "bsb -clean-world"
+  },
+  "keywords": [
+    "BuckleScript",
+    "cron",
+    "repeating"
+  ],
+  "author": "mikaello",
+  "description": "Cron for NodeJS. Execute something at a schedule.",
+  "homepage": "https://github.com/mikaello/bs-cron-node",
+  "repository": "https://github.com/mikaello/bs-cron-node",
+  "bugs": "https://github.com/mikaello/bs-cron-node/issues",
+  "license": "MIT",
+  "devDependencies": {
+    "bs-platform": "^5.0.4"
+  }
+}

@@ -1,0 +1,1 @@
+Js.log("Hello, this is crone-node speaking!");

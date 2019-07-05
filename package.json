@@ -16,7 +16,7 @@
   ],
   "author": "mikaello",
   "description": "Cron for NodeJS. Execute something at a schedule.",
-  "homepage": "https://github.com/mikaello/bs-cron-node",
+  "homepage": "https://mikaello.github.io/bs-node-cron/",
   "repository": "https://github.com/mikaello/bs-cron-node",
   "bugs": "https://github.com/mikaello/bs-cron-node/issues",
   "license": "MIT",

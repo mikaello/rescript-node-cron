@@ -12,7 +12,7 @@ module CronJob = {
       unit => unit,
       Js.nullable(bool),
       Js.nullable(string),
-      Js.nullable(string),
+      Js.nullable(Js.t({..})),
       Js.nullable(bool),
       Js.nullable(int),
       Js.nullable(bool)
@@ -27,7 +27,7 @@ module CronJob = {
         ~onComplete: unit => unit=_ => (),
         ~start: option(bool)=?,
         ~timezone: option(string)=?,
-        //~context: <how to type this?>,
+        ~context: option(Js.t({..}))=?,
         ~runOnInit: option(bool)=?,
         ~utcOffset: option(int)=?, // Could also be string, but that complicates
         ~unrefTimeout: option(bool)=?,
@@ -39,7 +39,7 @@ module CronJob = {
       onComplete,
       Js.Nullable.fromOption(start),
       Js.Nullable.fromOption(timezone),
-      Js.Nullable.fromOption(None), // context should in here
+      Js.Nullable.fromOption(context),
       Js.Nullable.fromOption(runOnInit),
       Js.Nullable.fromOption(utcOffset),
       Js.Nullable.fromOption(unrefTimeout),

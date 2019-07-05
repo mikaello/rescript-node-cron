@@ -1,5 +1,6 @@
 /** From {{: https://github.com/kelektiv/node-cron } node-cron GitHub-page }: Cron is a tool that allows you to execute something on a schedule. This is typically done using the cron syntax. We allow you to execute a function whenever your scheduled job triggers. We also allow you to execute a job external to the JavaScript process using [child_process]. Additionally, this library goes beyond the basic cron syntax and allows you to supply a {!val:Js.Date.t} object. This will be used as the trigger for your callback. Cron syntax is still an acceptable cron time format. Although the Cron patterns supported here extend on the standard Unix format to support seconds digits, leaving it off will default to 0 and match the Unix behavior. */
 
+/** Module for creating new cron jobs */
 module CronJob: {
   type t;
 
@@ -31,6 +32,7 @@ module CronJob: {
     t;
 };
 
+/** Module for creating cron times that can be used to alter a cron job */
 module CronTime: {
   type t;
 

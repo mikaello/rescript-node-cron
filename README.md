@@ -23,13 +23,25 @@ Then add `bs-cron` as a dependency to `bsconfig.json`:
 ```reason
 open BsCron
 
-// Do job every 10 minute
-let job = CronJob.makeFromString(
-    "* 10 * * * *",
-    () => { Js.log("Just doing my job") },
-)
+// Make a job that will fire every second when started
+let job =
+  CronJob.make(
+    `CronString("* * * * * *"),
+    _ => Js.log("Just doing my job"),
+    (),
+  );
 
-CronJob.start(job);
+// Firing every second, printing 'Just doing my job'
+start(job);
+
+let time =
+  CronTime.make(`JsDate(Js.Date.fromString("2021-04-11T10:20:30Z")), ());
+
+// setTime will stop the current job, and change when it will fire next
+setTime(job, time);
+
+// It will now fire once in april 2021
+start(job);
 ```
 
 ## Contribute

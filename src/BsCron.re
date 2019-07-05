@@ -1,8 +1,5 @@
-type t;
-
 module CronJob = {
   type t;
-  type onComplete = unit => unit;
 
   [@bs.module "cron"] [@bs.new]
   external make:

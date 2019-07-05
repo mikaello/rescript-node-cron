@@ -16,7 +16,7 @@
     "in-source": true
   },
   "suffix": ".bs.js",
-  "bs-dependencies": ["@glennsl/bs-jest"],
+  "bs-dependencies": ["@glennsl/bs-jest", "bs-moment"],
   "warnings": {
     "error": "+101"
   },

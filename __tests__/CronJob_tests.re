@@ -103,4 +103,24 @@ describe("CronJob", () => {
 
     expect(jobHasTicked^) |> toEqual(false);
   });
+
+  test("creating a CronJob with automatic start of the job", () => {
+    let jobHasTicked = ref(false);
+    let onTick = _ => jobHasTicked := true;
+
+    BsJestDateMock.advanceTo(Js.Date.fromString(pastDate));
+
+    let _ =
+      BsCron.CronJob.make(
+        `JsDate(Js.Date.fromString(futureDate)),
+        onTick,
+        ~start=true,
+        (),
+      );
+
+    BsJestDateMock.advanceTo(Js.Date.fromString(postFutureDate));
+    Jest.runAllTimers();
+
+    expect(jobHasTicked^) |> toEqual(true);
+  });
 });

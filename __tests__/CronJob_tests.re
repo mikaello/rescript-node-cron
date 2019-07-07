@@ -15,7 +15,6 @@ let postFutureDate = "2010-01-10T12:00:00.000Z";
 describe("CronJob", () => {
   test("creating a CronJob and testing onTick", () => {
     let jobHasTicked = ref(false);
-
     let onTick = _ => jobHasTicked := true;
 
     BsJestDateMock.advanceTo(Js.Date.fromString(pastDate));
@@ -84,5 +83,24 @@ describe("CronJob", () => {
     Jest.runAllTimers();
 
     expect(jobHasTicked^ && jobHasCompleted^) |> toEqual(true);
+  });
+
+  test("creating a CronJob and not starting will not trigger onTick", () => {
+    let jobHasTicked = ref(false);
+    let onTick = _ => jobHasTicked := true;
+
+    BsJestDateMock.advanceTo(Js.Date.fromString(pastDate));
+
+    let job =
+      BsCron.CronJob.make(
+        `JsDate(Js.Date.fromString(futureDate)),
+        onTick,
+        (),
+      );
+
+    BsJestDateMock.advanceTo(Js.Date.fromString(postFutureDate));
+    Jest.runAllTimers();
+
+    expect(jobHasTicked^) |> toEqual(false);
   });
 });

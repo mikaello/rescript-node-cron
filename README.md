@@ -8,8 +8,8 @@ Bindings for [node-cron](https://github.com/kelektiv/node-cron), a tool that all
 *    *    *    *    *    *
 ┬    ┬    ┬    ┬    ┬    ┬
 │    │    │    │    │    │
-│    │    │    │    │    └ day of week (0 - 7) (0 or 7 is Sun)
-│    │    │    │    └───── month (1 - 12)
+│    │    │    │    │    └ day of week (0 - 6, or sun - sat), 0 is Sun
+│    │    │    │    └───── month (0 - 11, or jan - dec)
 │    │    │    └────────── day of month (1 - 31)
 │    │    └─────────────── hour (0 - 23)
 │    └──────────────────── minute (0 - 59)

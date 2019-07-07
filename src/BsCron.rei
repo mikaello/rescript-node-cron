@@ -64,7 +64,7 @@ external sendAt:
 /** [timeout(cronTime)] returns the number of milliseconds in the future at which to fire the next [onTick] (and eventually other callbacks added with {!val:addCallback}). */
 [@bs.module "cron"] [@bs.val]
 external timeout:
-  ([@bs.unwrap] [ | `CronString(string) | `JsDate(Js.Date.t)]) => int =
+  ([@bs.unwrap] [ | `CronString(string) | `JsDate(Js.Date.t)]) => float =
   "timeout";
 
 /** [start(cronJob)] runs your job */

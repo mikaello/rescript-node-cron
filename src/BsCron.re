@@ -78,7 +78,7 @@ external sendAt:
 
 [@bs.module "cron"] [@bs.val]
 external timeout:
-  ([@bs.unwrap] [ | `CronString(string) | `JsDate(Js.Date.t)]) => int =
+  ([@bs.unwrap] [ | `CronString(string) | `JsDate(Js.Date.t)]) => float =
   "timeout";
 
 [@bs.send] external start: CronJob.t => unit = "start";

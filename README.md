@@ -58,6 +58,9 @@ setTime(job, time);
 start(job);
 ```
 
+[The tests](https://github.com/mikaello/bs-node-cron/tree/master/__tests__) have more examples of how to use these bindings.
+
+
 ## Contribute
 
 - If you find bugs or want to improve this library, feel free to open an issue or PR.

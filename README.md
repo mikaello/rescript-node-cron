@@ -1,5 +1,6 @@
 # bs-cron
 
+[![NPM version](http://img.shields.io/npm/v/bs-node-cron.svg)](https://www.npmjs.org/package/bs-node-cron)
 [![Build Status](https://travis-ci.org/mikaello/bs-node-cron.svg?branch=master)](https://travis-ci.org/mikaello/bs-node-cron)
 
 Bindings for [node-cron](https://github.com/kelektiv/node-cron), a tool that allows you to execute _something_ on a schedule. This is typically done using the cron syntax:

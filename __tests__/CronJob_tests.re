@@ -91,7 +91,7 @@ describe("creating of CronJob", () => {
 
     BsJestDateMock.advanceTo(Js.Date.fromString(pastDate));
 
-    let job =
+    let _ =
       BsCron.CronJob.make(
         `JsDate(Js.Date.fromString(futureDate)),
         onTick,

@@ -21,7 +21,7 @@ Learn more about the syntax at [crontab.guru](https://crontab.guru/) (NB it does
 ## Getting started
 
 ```
-yarn add mikaello/bs-cron
+yarn add bs-cron
 ```
 
 Then add `bs-cron` as a dependency to `bsconfig.json`:

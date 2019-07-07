@@ -8,7 +8,7 @@ Bindings for [node-cron](https://github.com/kelektiv/node-cron), a tool that all
 *    *    *    *    *    *
 ┬    ┬    ┬    ┬    ┬    ┬
 │    │    │    │    │    │
-│    │    │    │    │    └ day of week (0 - 6, or sun - sat), 0 is Sun
+│    │    │    │    │    └ day of week (0 - 6, or sun - sat), 0 is Sunday
 │    │    │    │    └───── month (0 - 11, or jan - dec)
 │    │    │    └────────── day of month (1 - 31)
 │    │    └─────────────── hour (0 - 23)
@@ -16,7 +16,7 @@ Bindings for [node-cron](https://github.com/kelektiv/node-cron), a tool that all
 └───────────────────────── second (0 - 59, OPTIONAL)
 ```
 
-Learn more about the syntax at [crontab.guru](https://crontab.guru/) (NB it does not have the seconds parameter).
+Learn more about the syntax at [crontab.guru](https://crontab.guru/) (NB it does not have the seconds parameter and months start at 1 (this lib has 0-indexed months)).
 
 ## Getting started
 

@@ -95,6 +95,7 @@ let nextDates = (job, numberOfDates): array(MomentRe.Moment.t) => {
 
   // nextDates can return both an array of Moment's and a single Moment,
   // depending of how to the time field on the CronJob was created.
+  // For consistency it is always returning an array here.
 
   convertToArray(next);
 };

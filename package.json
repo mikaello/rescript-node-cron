@@ -24,7 +24,7 @@
     "@glennsl/bs-jest": "^0.4.8",
     "@ristostevcev/bs-odoc": "^1.3.0",
     "bs-jest-date-mock": "^1.0.1",
-    "bs-platform": "^5.0.4"
+    "bs-platform": "^5.0.6"
   },
   "dependencies": {
     "bs-moment": "^0.4.4",

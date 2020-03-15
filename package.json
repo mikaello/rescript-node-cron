@@ -27,8 +27,8 @@
     "bs-platform": "^7.2.2"
   },
   "dependencies": {
-    "bs-moment": "^0.4.4",
-    "cron": "^1.7.1"
+    "bs-moment": "^0.4.5",
+    "cron": "^1.8.2"
   },
   "jest": {
     "setupFiles": [

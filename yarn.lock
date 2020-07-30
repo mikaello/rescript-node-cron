@@ -273,10 +273,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@glennsl/bs-jest@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@glennsl/bs-jest/-/bs-jest-0.5.0.tgz#1391963ab2af940f50a83c71faf122d91d2c0f66"
-  integrity sha512-yHZPZzdi1s26grJy/vFPCpFDHISMXvP14Jst0q2ug5ON5SL/Z2CDaiR5cEnu1BwKZRaP763RAFxT5vwyo5+zCQ==
+"@glennsl/bs-jest@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@glennsl/bs-jest/-/bs-jest-0.5.1.tgz#2e16ad94268fc1e5ba0af978c141db1684556a55"
+  integrity sha512-+yhWn6uxFt+k61xcWz/xnLC3ticZR5m2d2++a7vXIq2qxiktegBc3ZD/5nvKU8ciFnsHEOoyIzBzoZH2oRGdkw==
   dependencies:
     jest "^25.1.0"
 
@@ -809,22 +809,22 @@ browser-resolve@^1.11.3:
   dependencies:
     resolve "1.1.7"
 
-bs-jest-date-mock@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/bs-jest-date-mock/-/bs-jest-date-mock-1.0.2.tgz#f9c6b6363624ac981d4285714198cec839f922f6"
-  integrity sha512-MTECnfsMbanZYnMZ2NRT8uoo7rz3c1e6kvfKJW/rKsHxR1AhDWWFWQlT/FHtkMQZQG04AH0bVK6Q9szYvm7HAw==
+bs-jest-date-mock@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/bs-jest-date-mock/-/bs-jest-date-mock-1.0.5.tgz#6d2b350b5e573b754c3f486620034d5b6cf1128e"
+  integrity sha512-vuBmLRZLhEcdpuR56EJET0ZsDsgGCA6FQxdYAoWwFDyhNutFhA1MkCLmY0Vk+xCfcrPdePsLNEXC4HEFZm1LUQ==
   dependencies:
-    jest-date-mock "^1.0.7"
+    jest-date-mock "^1.0.8"
 
 bs-moment@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/bs-moment/-/bs-moment-0.6.0.tgz#b49c5580598ef277696494684fd274ea1f8b1019"
   integrity sha512-AYtL5j6hXHwA+SZut4uhvlhDrabpqwjuXIa/0qfVpEjR45HGBruSZFxUcXwjtOGy9eoRc1FKjRM0n+X21oJb+w==
 
-bs-platform@^7.2.2:
-  version "7.2.2"
-  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-7.2.2.tgz#76fdc63e4889458ae3d257a0132107a792f2309c"
-  integrity sha512-PWcFfN+jCTtT/rMaHDhKh+W9RUTpaRunmSF9vbLYcrJbpgCNW6aFKAY33u0P3mLxwuhshN3b4FxqGUBPj6exZQ==
+bs-platform@8.1.1:
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-8.1.1.tgz#7470b67f8d0d4385b080c2552c54c5fe9f314ece"
+  integrity sha512-33wDWYteJQIhEfEpayvXK8eS2TdMtzQHFZMoMjDEY+NB2vTKWQFGoggOrJ4c7fvRzvQ2igwmc7idrxgMz39Qog==
 
 bser@^2.0.0:
   version "2.1.0"
@@ -1883,10 +1883,10 @@ jest-config@^25.1.0:
     pretty-format "^25.1.0"
     realpath-native "^1.1.0"
 
-jest-date-mock@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/jest-date-mock/-/jest-date-mock-1.0.7.tgz#b1e5071beb314cbfcfb0a21d8560a2122519f5c3"
-  integrity sha512-ZgbYlURRhVpf52Jho4tlyUgpJJ+nYvhxIWhIIEdarmsSuTxFZlC9DmKCyQXsuEljfxK+7HsqdBX/L6rxwWraYw==
+jest-date-mock@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/jest-date-mock/-/jest-date-mock-1.0.8.tgz#13468c0352c5a3614c6b356dbc6b88eb37d9e0b3"
+  integrity sha512-0Lyp+z9xvuNmLbK+5N6FOhSiBeux05Lp5bbveFBmYo40Aggl2wwxFoIrZ+rOWC8nDNcLeBoDd2miQdEDSf3iQw==
 
 jest-diff@^25.1.0:
   version "25.1.0"

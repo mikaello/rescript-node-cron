@@ -816,10 +816,10 @@ bs-jest-date-mock@^1.0.2:
   dependencies:
     jest-date-mock "^1.0.7"
 
-bs-moment@^0.4.5:
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/bs-moment/-/bs-moment-0.4.5.tgz#3f84fed55c2a70d25b0b6025e4e8d821fcdd4dc8"
-  integrity sha512-anPYkFSof+X8EeomnP0fbQBvWFJeganwPqqARVB+fcdKYX2Uog/n3CCiFGEA+66yHbwnWZD5YFhtHCuyLMcQfQ==
+bs-moment@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/bs-moment/-/bs-moment-0.6.0.tgz#b49c5580598ef277696494684fd274ea1f8b1019"
+  integrity sha512-AYtL5j6hXHwA+SZut4uhvlhDrabpqwjuXIa/0qfVpEjR45HGBruSZFxUcXwjtOGy9eoRc1FKjRM0n+X21oJb+w==
 
 bs-platform@^7.2.2:
   version "7.2.2"

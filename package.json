@@ -1,5 +1,5 @@
 {
-  "name": "bs-cron",
+  "name": "rescript-cron",
   "version": "1.1.1",
   "scripts": {
     "build": "rescript build -with-deps",
@@ -16,9 +16,9 @@
   ],
   "author": "mikaello",
   "description": "Cron for NodeJS. Execute something at a schedule.",
-  "homepage": "https://mikaello.github.io/bs-node-cron/",
-  "repository": "https://github.com/mikaello/bs-node-cron",
-  "bugs": "https://github.com/mikaello/bs-node-cron/issues",
+  "homepage": "https://mikaello.github.io/rescript-node-cron/",
+  "repository": "https://github.com/mikaello/rescript-node-cron",
+  "bugs": "https://github.com/mikaello/rescript-node-cron/issues",
   "license": "MIT",
   "devDependencies": {
     "@glennsl/bs-jest": "^0.7.0",

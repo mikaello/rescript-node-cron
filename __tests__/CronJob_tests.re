@@ -3,7 +3,7 @@ open Expect;
 
 beforeEach(() => Jest.useFakeTimers());
 afterEach(() => {
-  BsJestDateMock.clear();
+  RescriptJestDateMock.clear();
   Jest.clearAllTimers();
   Jest.useRealTimers();
 });
@@ -17,7 +17,7 @@ describe("creating of CronJob", () => {
     let jobHasTicked = ref(false);
     let onTick = _ => jobHasTicked := true;
 
-    BsJestDateMock.advanceTo(Js.Date.fromString(pastDate));
+    RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate));
 
     let job =
       BsCron.CronJob.make(
@@ -28,7 +28,7 @@ describe("creating of CronJob", () => {
 
     BsCron.start(job);
 
-    BsJestDateMock.advanceTo(Js.Date.fromString(postFutureDate));
+    RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate));
     Jest.runAllTimers();
 
     expect(jobHasTicked^) |> toEqual(true);
@@ -41,7 +41,7 @@ describe("creating of CronJob", () => {
     let onTick = _ => jobHasTicked := true;
     let onComplete = _ => jobHasCompleted := true;
 
-    BsJestDateMock.advanceTo(Js.Date.fromString(pastDate));
+    RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate));
 
     let job =
       BsCron.CronJob.make(
@@ -67,7 +67,7 @@ describe("creating of CronJob", () => {
     };
     let onComplete = _ => jobHasCompleted := true;
 
-    BsJestDateMock.advanceTo(Js.Date.fromString(pastDate));
+    RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate));
 
     let job =
       BsCron.CronJob.make(
@@ -79,7 +79,7 @@ describe("creating of CronJob", () => {
 
     BsCron.start(job);
 
-    BsJestDateMock.advanceTo(Js.Date.fromString(postFutureDate));
+    RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate));
     Jest.runAllTimers();
 
     expect(jobHasTicked^ && jobHasCompleted^) |> toEqual(true);
@@ -89,7 +89,7 @@ describe("creating of CronJob", () => {
     let jobHasTicked = ref(false);
     let onTick = _ => jobHasTicked := true;
 
-    BsJestDateMock.advanceTo(Js.Date.fromString(pastDate));
+    RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate));
 
     let _ =
       BsCron.CronJob.make(
@@ -98,7 +98,7 @@ describe("creating of CronJob", () => {
         (),
       );
 
-    BsJestDateMock.advanceTo(Js.Date.fromString(postFutureDate));
+    RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate));
     Jest.runAllTimers();
 
     expect(jobHasTicked^) |> toEqual(false);
@@ -108,7 +108,7 @@ describe("creating of CronJob", () => {
     let jobHasTicked = ref(false);
     let onTick = _ => jobHasTicked := true;
 
-    BsJestDateMock.advanceTo(Js.Date.fromString(pastDate));
+    RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate));
 
     let _ =
       BsCron.CronJob.make(
@@ -118,7 +118,7 @@ describe("creating of CronJob", () => {
         (),
       );
 
-    BsJestDateMock.advanceTo(Js.Date.fromString(postFutureDate));
+    RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate));
     Jest.runAllTimers();
 
     expect(jobHasTicked^) |> toEqual(true);
@@ -133,7 +133,7 @@ describe("changing CronJobs", () => {
     let onTick = _ => jobHasTicked := true;
     let callback = _ => callbackHasTicked := true;
 
-    BsJestDateMock.advanceTo(Js.Date.fromString(pastDate));
+    RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate));
 
     let job =
       BsCron.CronJob.make(
@@ -147,7 +147,7 @@ describe("changing CronJobs", () => {
     // Adding a callback in addition to the onTick parameter
     BsCron.addCallback(job, callback);
 
-    BsJestDateMock.advanceTo(Js.Date.fromString(postFutureDate));
+    RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate));
     Jest.runAllTimers();
 
     expect(jobHasTicked^ && callbackHasTicked^) |> toEqual(true);
@@ -162,7 +162,7 @@ describe("changing CronJobs", () => {
     let callback1 = _ => callbackHasTicked1 := true;
     let callback2 = _ => callbackHasTicked2 := true;
 
-    BsJestDateMock.advanceTo(Js.Date.fromString(pastDate));
+    RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate));
 
     let job =
       BsCron.CronJob.make(
@@ -186,7 +186,7 @@ describe("changing CronJobs", () => {
   test("changing time of CronJob with setTime and a CronTime", () => {
     let onTick = _ => ();
 
-    BsJestDateMock.advanceTo(Js.Date.fromString("2010-01-01T12:00:00.000Z"));
+    RescriptJestDateMock.advanceTo(Js.Date.fromString("2010-01-01T12:00:00.000Z"));
 
     let job =
       BsCron.CronJob.make(

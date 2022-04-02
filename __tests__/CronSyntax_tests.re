@@ -1,7 +1,7 @@
 open Jest;
 open Expect;
 
-open BsJestDateMock;
+open RescriptJestDateMock;
 
 afterEach(() => clear());
 

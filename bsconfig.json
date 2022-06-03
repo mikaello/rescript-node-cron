@@ -17,7 +17,7 @@
   },
   "suffix": ".bs.js",
   "bs-dependencies": ["bs-moment"],
-  "bs-dev-dependencies": ["@glennsl/bs-jest", "rescript-jest-date-mock"],
+  "bs-dev-dependencies": ["@glennsl/rescript-jest", "rescript-jest-date-mock"],
   "warnings": {
     "error": "+101"
   },

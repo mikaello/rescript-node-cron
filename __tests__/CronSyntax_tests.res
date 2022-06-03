@@ -16,7 +16,7 @@ describe("functions for just dealing with crontab syntax", () => {
     // At minute 10
     let nextSchedule = RescriptCron.sendAt(#CronString("* 10 * * * *"))
 
-    expect(MomentRe.Moment.isSame(nextSchedule, aMomentTenMinutesLater)) |> toBe(true)
+    expect(MomentRe.Moment.isSame(nextSchedule, aMomentTenMinutesLater)) -> toBe(true)
   })
 
   test("sendAt with cron syntax at hour 10", () => {
@@ -28,7 +28,7 @@ describe("functions for just dealing with crontab syntax", () => {
 
     let aMomentWithNext10Hour = MomentRe.momentWithDate(aDate) |> MomentRe.Moment.setHour(20)
 
-    expect(MomentRe.Moment.isSame(nextSchedule, aMomentWithNext10Hour)) |> toBe(true)
+    expect(MomentRe.Moment.isSame(nextSchedule, aMomentWithNext10Hour)) -> toBe(true)
   })
 
   test("sendAt with Js.date instead of cron syntax", () => {
@@ -40,7 +40,7 @@ describe("functions for just dealing with crontab syntax", () => {
     // Future Js.Date
     let nextSchedule = RescriptCron.sendAt(#JsDate(Js.Date.fromString(futureDate)))
 
-    expect(nextSchedule |> MomentRe.Moment.toDate |> Js.Date.toISOString) |> toBe(futureDate)
+    expect(nextSchedule |> MomentRe.Moment.toDate |> Js.Date.toISOString) -> toBe(futureDate)
   })
 
   test("timeout", () => {
@@ -54,6 +54,6 @@ describe("functions for just dealing with crontab syntax", () => {
 
     let msDiff = MomentRe.diff(aMomentWithNext10Hour, MomentRe.momentNow(), #milliseconds)
 
-    expect(msToNextFire) |> toEqual(msDiff)
+    expect(msToNextFire) -> toEqual(msDiff)
   })
 })

@@ -26,7 +26,7 @@ describe("creating of CronJob", () => {
     RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate))
     Jest.runAllTimers()
 
-    expect(jobHasTicked.contents) |> toEqual(true)
+    expect(jobHasTicked.contents) -> toEqual(true)
   })
 
   test("creating a CronJob with onComplete option", () => {
@@ -43,7 +43,7 @@ describe("creating of CronJob", () => {
     RescriptCron.start(job)
     RescriptCron.stop(job)
 
-    expect(jobHasCompleted.contents) |> toEqual(true)
+    expect(jobHasCompleted.contents) -> toEqual(true)
   })
 
   test("creating a CronJob with onTick and onComplete as param", () => {
@@ -65,7 +65,7 @@ describe("creating of CronJob", () => {
     RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate))
     Jest.runAllTimers()
 
-    expect(jobHasTicked.contents && jobHasCompleted.contents) |> toEqual(true)
+    expect(jobHasTicked.contents && jobHasCompleted.contents) -> toEqual(true)
   })
 
   test("creating a CronJob and not starting will not trigger onTick", () => {
@@ -79,7 +79,7 @@ describe("creating of CronJob", () => {
     RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate))
     Jest.runAllTimers()
 
-    expect(jobHasTicked.contents) |> toEqual(false)
+    expect(jobHasTicked.contents) -> toEqual(false)
   })
 
   test("creating a CronJob with automatic start of the job", () => {
@@ -93,7 +93,7 @@ describe("creating of CronJob", () => {
     RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate))
     Jest.runAllTimers()
 
-    expect(jobHasTicked.contents) |> toEqual(true)
+    expect(jobHasTicked.contents) -> toEqual(true)
   })
 })
 
@@ -117,7 +117,7 @@ describe("changing CronJobs", () => {
     RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate))
     Jest.runAllTimers()
 
-    expect(jobHasTicked.contents && callbackHasTicked.contents) |> toEqual(true)
+    expect(jobHasTicked.contents && callbackHasTicked.contents) -> toEqual(true)
   })
 
   test("fire all callbacks for a CronJob (without timer expiring)", () => {
@@ -143,7 +143,7 @@ describe("changing CronJobs", () => {
 
     expect(
       jobHasTicked.contents && (callbackHasTicked1.contents && callbackHasTicked2.contents),
-    ) |> toEqual(true)
+    ) -> toEqual(true)
   })
 
   test("changing time of CronJob with setTime and a CronTime", () => {
@@ -165,6 +165,6 @@ describe("changing CronJobs", () => {
 
     let nextTick = RescriptCron.nextMomentDates(job)->Array.get(0)
 
-    expect(MomentRe.Moment.toJSON(nextTick)) |> toEqual(MomentRe.Moment.toJSON(nextAssumedTick))
+    expect(MomentRe.Moment.toJSON(nextTick)) -> toEqual(MomentRe.Moment.toJSON(nextAssumedTick))
   })
 })

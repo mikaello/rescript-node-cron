@@ -24,7 +24,7 @@
     "@glennsl/rescript-jest": "0.9.1",
     "@ristostevcev/bs-odoc": "1.3.0",
     "rescript": "9.1.4",
-    "rescript-jest-date-mock": "2.0.0"
+    "rescript-jest-date-mock": "2.0.1"
   },
   "dependencies": {
     "bs-moment": "0.6.0",

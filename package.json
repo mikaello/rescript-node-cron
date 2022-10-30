@@ -28,7 +28,7 @@
     "rescript-jest-date-mock": "2.0.1"
   },
   "dependencies": {
-    "bs-moment": "0.6.0",
+    "bs-moment": "0.8.0",
     "cron": "1.8.2"
   },
   "jest": {

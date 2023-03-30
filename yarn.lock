@@ -2166,10 +2166,10 @@ rescript-jest-date-mock@2.0.1:
   dependencies:
     jest-date-mock "1.0.8"
 
-rescript@9.1.4:
-  version "9.1.4"
-  resolved "https://registry.npmjs.org/rescript/-/rescript-9.1.4.tgz"
-  integrity sha512-aXANK4IqecJzdnDpJUsU6pxMViCR5ogAxzuqS0mOr8TloMnzAjJFu63fjD6LCkWrKAhlMkFFzQvVQYaAaVkFXw==
+rescript@10.1.4:
+  version "10.1.4"
+  resolved "https://registry.yarnpkg.com/rescript/-/rescript-10.1.4.tgz#0f37710d371f32a704f17b4e804f66ce3c79a305"
+  integrity sha512-FFKlS9AG/XrLepWsyw7B+A9DtQBPWEPDPDKghV831Y2KGbie+eeFBOS0xtRHp0xbt7S0N2Dm6hhX+kTZQ/3Ybg==
 
 resolve-cwd@^3.0.0:
   version "3.0.0"

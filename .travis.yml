@@ -1,5 +1,5 @@
 language: node_js
 node_js:
-  - "16.16"
+  - "16.20"
 
 cache: yarn

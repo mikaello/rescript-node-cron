@@ -605,6 +605,11 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
+"@types/luxon@~3.3.0":
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-3.3.2.tgz#f6e3524c2486b949a4db445e85d93c8e9886dfe2"
+  integrity sha512-l5cpE57br4BIjK+9BSkFBOsWtwv6J9bJpC7gdXIzZyI0vuKvNTk0wZZrkQxMGsUAuGW9+WMNWF2IJMD7br2yeQ==
+
 "@types/node@*":
   version "17.0.38"
   resolved "https://registry.npmjs.org/@types/node/-/node-17.0.38.tgz"
@@ -946,12 +951,13 @@ convert-source-map@^1.4.0, convert-source-map@^1.6.0, convert-source-map@^1.7.0:
   dependencies:
     safe-buffer "~5.1.1"
 
-cron@1.8.2:
-  version "1.8.2"
-  resolved "https://registry.npmjs.org/cron/-/cron-1.8.2.tgz"
-  integrity sha512-Gk2c4y6xKEO8FSAUTklqtfSr7oTq0CiPQeLBG5Fl0qoXpZyMcj1SG59YL+hqq04bu6/IuEA7lMkYDAplQNKkyg==
+cron@2.4.4:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/cron/-/cron-2.4.4.tgz#988c1757b3f288d1dfcc360ee6d80087448916dc"
+  integrity sha512-MHlPImXJj3K7x7lyUHjtKEOl69CSlTOWxS89jiFgNkzXfvhVjhMz/nc7/EIfN9vgooZp8XTtXJ1FREdmbyXOiQ==
   dependencies:
-    moment-timezone "^0.5.x"
+    "@types/luxon" "~3.3.0"
+    luxon "~3.3.0"
 
 cross-spawn@^7.0.3:
   version "7.0.3"
@@ -1915,6 +1921,11 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
+luxon@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.3.0.tgz#d73ab5b5d2b49a461c47cedbc7e73309b4805b48"
+  integrity sha512-An0UCfG/rSiqtAIiBPO0Y9/zAnHUZxAMiCpTd5h2smgsj7GGmcenvrvww2cqNA8/4A5ZrD1gJpHN2mIHZQF+Mg==
+
 make-dir@^3.0.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/make-dir/-/make-dir-3.1.0.tgz"
@@ -1966,14 +1977,7 @@ minimatch@^3.0.4, minimatch@^3.1.1:
   dependencies:
     brace-expansion "^1.1.7"
 
-moment-timezone@^0.5.x:
-  version "0.5.25"
-  resolved "https://registry.npmjs.org/moment-timezone/-/moment-timezone-0.5.25.tgz"
-  integrity sha512-DgEaTyN/z0HFaVcVbSyVCUU6HeFdnNC3vE4c9cgu2dgMTvjBUBdBzWfasTBmAW45u5OIMeCJtU8yNjM22DHucw==
-  dependencies:
-    moment ">= 2.9.0"
-
-moment@2.29.3, "moment@>= 2.9.0":
+moment@2.29.3:
   version "2.29.3"
   resolved "https://registry.npmjs.org/moment/-/moment-2.29.3.tgz"
   integrity sha512-c6YRvhEo//6T2Jz/vVtYzqBzwvPT95JBQ+smCytzf7c50oMZRsR/a4w88aD34I+/QVSfnoAnSBFPJHItlOMJVw==

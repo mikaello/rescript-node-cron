@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: yarn
-      - run: yarn install --frozen-lockfile
-      - run: yarn build
-      - run: yarn test
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm test

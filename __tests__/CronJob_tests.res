@@ -17,13 +17,13 @@ describe("creating of CronJob", () => {
     let jobHasTicked = ref(false)
     let onTick = _ => jobHasTicked := true
 
-    RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate))
+    RescriptJestDateMock.advanceTo(Date.fromString(pastDate))
 
-    let job = RescriptCron.CronJob.make(#JsDate(Js.Date.fromString(futureDate)), onTick, ())
+    let job = RescriptCron.CronJob.make(#JsDate(Date.fromString(futureDate)), onTick, ())
 
     RescriptCron.start(job)
 
-    RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate))
+    RescriptJestDateMock.advanceTo(Date.fromString(postFutureDate))
     Jest.runAllTimers()
 
     expect(jobHasTicked.contents)->toEqual(true)
@@ -36,10 +36,10 @@ describe("creating of CronJob", () => {
     let onTick = _ => jobHasTicked := true
     let onComplete = _ => jobHasCompleted := true
 
-    RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate))
+    RescriptJestDateMock.advanceTo(Date.fromString(pastDate))
 
     let job = RescriptCron.CronJob.make(
-      #JsDate(Js.Date.fromString(futureDate)),
+      #JsDate(Date.fromString(futureDate)),
       onTick,
       ~onComplete,
       (),
@@ -61,10 +61,10 @@ describe("creating of CronJob", () => {
     }
     let onComplete = _ => jobHasCompleted := true
 
-    RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate))
+    RescriptJestDateMock.advanceTo(Date.fromString(pastDate))
 
     let job = RescriptCron.CronJob.make(
-      #JsDate(Js.Date.fromString(futureDate)),
+      #JsDate(Date.fromString(futureDate)),
       onTick,
       ~onComplete,
       (),
@@ -72,7 +72,7 @@ describe("creating of CronJob", () => {
 
     RescriptCron.start(job)
 
-    RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate))
+    RescriptJestDateMock.advanceTo(Date.fromString(postFutureDate))
     Jest.runAllTimers()
 
     expect(jobHasTicked.contents && jobHasCompleted.contents)->toEqual(true)
@@ -82,11 +82,11 @@ describe("creating of CronJob", () => {
     let jobHasTicked = ref(false)
     let onTick = _ => jobHasTicked := true
 
-    RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate))
+    RescriptJestDateMock.advanceTo(Date.fromString(pastDate))
 
-    let _ = RescriptCron.CronJob.make(#JsDate(Js.Date.fromString(futureDate)), onTick, ())
+    let _ = RescriptCron.CronJob.make(#JsDate(Date.fromString(futureDate)), onTick, ())
 
-    RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate))
+    RescriptJestDateMock.advanceTo(Date.fromString(postFutureDate))
     Jest.runAllTimers()
 
     expect(jobHasTicked.contents)->toEqual(false)
@@ -96,16 +96,11 @@ describe("creating of CronJob", () => {
     let jobHasTicked = ref(false)
     let onTick = _ => jobHasTicked := true
 
-    RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate))
+    RescriptJestDateMock.advanceTo(Date.fromString(pastDate))
 
-    let _ = RescriptCron.CronJob.make(
-      #JsDate(Js.Date.fromString(futureDate)),
-      onTick,
-      ~start=true,
-      (),
-    )
+    let _ = RescriptCron.CronJob.make(#JsDate(Date.fromString(futureDate)), onTick, ~start=true, ())
 
-    RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate))
+    RescriptJestDateMock.advanceTo(Date.fromString(postFutureDate))
     Jest.runAllTimers()
 
     expect(jobHasTicked.contents)->toEqual(true)
@@ -120,16 +115,16 @@ describe("changing CronJobs", () => {
     let onTick = _ => jobHasTicked := true
     let callback = _ => callbackHasTicked := true
 
-    RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate))
+    RescriptJestDateMock.advanceTo(Date.fromString(pastDate))
 
-    let job = RescriptCron.CronJob.make(#JsDate(Js.Date.fromString(futureDate)), onTick, ())
+    let job = RescriptCron.CronJob.make(#JsDate(Date.fromString(futureDate)), onTick, ())
 
     RescriptCron.start(job)
 
     // Adding a callback in addition to the onTick parameter
     RescriptCron.addCallback(job, callback)
 
-    RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate))
+    RescriptJestDateMock.advanceTo(Date.fromString(postFutureDate))
     Jest.runAllTimers()
 
     expect(jobHasTicked.contents && callbackHasTicked.contents)->toEqual(true)
@@ -144,9 +139,9 @@ describe("changing CronJobs", () => {
     let callback1 = _ => callbackHasTicked1 := true
     let callback2 = _ => callbackHasTicked2 := true
 
-    RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate))
+    RescriptJestDateMock.advanceTo(Date.fromString(pastDate))
 
-    let job = RescriptCron.CronJob.make(#JsDate(Js.Date.fromString(futureDate)), onTick, ())
+    let job = RescriptCron.CronJob.make(#JsDate(Date.fromString(futureDate)), onTick, ())
 
     RescriptCron.start(job)
 
@@ -164,9 +159,9 @@ describe("changing CronJobs", () => {
   test("changing time of CronJob with setTime and a CronTime", () => {
     let onTick = _ => ()
 
-    RescriptJestDateMock.advanceTo(Js.Date.fromString("2010-01-01T12:00:00.000Z"))
+    RescriptJestDateMock.advanceTo(Date.fromString("2010-01-01T12:00:00.000Z"))
 
-    let job = RescriptCron.CronJob.make(#JsDate(Js.Date.fromString(futureDate)), onTick, ())
+    let job = RescriptCron.CronJob.make(#JsDate(Date.fromString(futureDate)), onTick, ())
 
     // every January 20th twelve o'clock
     let time = RescriptCron.CronTime.make(#CronString("0 0 12 20 jan *"), ())

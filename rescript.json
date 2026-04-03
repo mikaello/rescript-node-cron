@@ -1,0 +1,24 @@
+{
+  "name": "rescript-cron",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    },
+    {
+      "dir": "__tests__",
+      "type": "dev"
+    }
+  ],
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "dependencies": [],
+  "dev-dependencies": ["@glennsl/rescript-jest"],
+  "warnings": {
+    "error": "+101"
+  },
+  "namespace": false
+}

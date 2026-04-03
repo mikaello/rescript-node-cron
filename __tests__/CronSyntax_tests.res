@@ -10,13 +10,16 @@ describe("functions for just dealing with crontab syntax", () => {
     let aDate = Js.Date.fromString("2018-05-27T12:00:00Z")
     advanceTo(aDate)
 
-    let aMomentTenMinutesLater =
-      Js.Date.setMinutes(aDate, 10.0) |> Js.Date.fromFloat |> MomentRe.momentWithDate
+    let aMomentTenMinutesLater = LuxonDateTime.fromJSDate(
+      Js.Date.fromFloat(Js.Date.setMinutes(aDate, 10.0)),
+    )
 
     // At minute 10
     let nextSchedule = RescriptCron.sendAt(#CronString("* 10 * * * *"))
 
-    expect(MomentRe.Moment.isSame(nextSchedule, aMomentTenMinutesLater)) -> toBe(true)
+    expect(LuxonDateTime.toMillis(nextSchedule))->toEqual(
+      LuxonDateTime.toMillis(aMomentTenMinutesLater),
+    )
   })
 
   test("sendAt with cron syntax at hour 10", () => {
@@ -26,9 +29,11 @@ describe("functions for just dealing with crontab syntax", () => {
     // Every 10 hours
     let nextSchedule = RescriptCron.sendAt(#CronString("* */10 * * *"))
 
-    let aMomentWithNext10Hour = MomentRe.momentWithDate(aDate) |> MomentRe.Moment.setHour(20)
+    let aMomentWithNext10Hour = LuxonDateTime.fromJSDate(aDate)->LuxonDateTime.set({hour: 20})
 
-    expect(MomentRe.Moment.isSame(nextSchedule, aMomentWithNext10Hour)) -> toBe(true)
+    expect(LuxonDateTime.toMillis(nextSchedule))->toEqual(
+      LuxonDateTime.toMillis(aMomentWithNext10Hour),
+    )
   })
 
   test("sendAt with Js.date instead of cron syntax", () => {
@@ -40,7 +45,7 @@ describe("functions for just dealing with crontab syntax", () => {
     // Future Js.Date
     let nextSchedule = RescriptCron.sendAt(#JsDate(Js.Date.fromString(futureDate)))
 
-    expect(nextSchedule |> MomentRe.Moment.toDate |> Js.Date.toISOString) -> toBe(futureDate)
+    expect(Js.Date.toISOString(LuxonDateTime.toJSDate(nextSchedule)))->toBe(futureDate)
   })
 
   test("timeout", () => {
@@ -50,10 +55,10 @@ describe("functions for just dealing with crontab syntax", () => {
     // Every 10 hours
     let msToNextFire = RescriptCron.timeout(#CronString("* */10 * * *"))
 
-    let aMomentWithNext10Hour = MomentRe.momentWithDate(aDate) |> MomentRe.Moment.setHour(20)
+    let aMomentWithNext10Hour = LuxonDateTime.fromJSDate(aDate)->LuxonDateTime.set({hour: 20})
 
-    let msDiff = MomentRe.diff(aMomentWithNext10Hour, MomentRe.momentNow(), #milliseconds)
+    let msDiff = LuxonDateTime.diffMilliseconds(aMomentWithNext10Hour, LuxonDateTime.now())
 
-    expect(msToNextFire) -> toEqual(msDiff)
+    expect(msToNextFire)->toEqual(msDiff)
   })
 })

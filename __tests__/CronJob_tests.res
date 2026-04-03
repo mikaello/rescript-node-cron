@@ -1,7 +1,7 @@
 open Jest
 open Expect
 
-beforeEach(() => Jest.useFakeTimers())
+beforeEach(() => Jest.useFakeTimers(~implementation=#legacy, ()))
 afterEach(() => {
   RescriptJestDateMock.clear()
   Jest.clearAllTimers()
@@ -26,7 +26,7 @@ describe("creating of CronJob", () => {
     RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate))
     Jest.runAllTimers()
 
-    expect(jobHasTicked.contents) -> toEqual(true)
+    expect(jobHasTicked.contents)->toEqual(true)
   })
 
   test("creating a CronJob with onComplete option", () => {
@@ -38,12 +38,17 @@ describe("creating of CronJob", () => {
 
     RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate))
 
-    let job = RescriptCron.CronJob.make(#JsDate(Js.Date.fromString(futureDate)), onTick, ~onComplete, ())
+    let job = RescriptCron.CronJob.make(
+      #JsDate(Js.Date.fromString(futureDate)),
+      onTick,
+      ~onComplete,
+      (),
+    )
 
     RescriptCron.start(job)
     RescriptCron.stop(job)
 
-    expect(jobHasCompleted.contents) -> toEqual(true)
+    expect(jobHasCompleted.contents)->toEqual(true)
   })
 
   test("creating a CronJob with onTick and onComplete as param", () => {
@@ -58,14 +63,19 @@ describe("creating of CronJob", () => {
 
     RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate))
 
-    let job = RescriptCron.CronJob.make(#JsDate(Js.Date.fromString(futureDate)), onTick, ~onComplete, ())
+    let job = RescriptCron.CronJob.make(
+      #JsDate(Js.Date.fromString(futureDate)),
+      onTick,
+      ~onComplete,
+      (),
+    )
 
     RescriptCron.start(job)
 
     RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate))
     Jest.runAllTimers()
 
-    expect(jobHasTicked.contents && jobHasCompleted.contents) -> toEqual(true)
+    expect(jobHasTicked.contents && jobHasCompleted.contents)->toEqual(true)
   })
 
   test("creating a CronJob and not starting will not trigger onTick", () => {
@@ -79,7 +89,7 @@ describe("creating of CronJob", () => {
     RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate))
     Jest.runAllTimers()
 
-    expect(jobHasTicked.contents) -> toEqual(false)
+    expect(jobHasTicked.contents)->toEqual(false)
   })
 
   test("creating a CronJob with automatic start of the job", () => {
@@ -88,12 +98,17 @@ describe("creating of CronJob", () => {
 
     RescriptJestDateMock.advanceTo(Js.Date.fromString(pastDate))
 
-    let _ = RescriptCron.CronJob.make(#JsDate(Js.Date.fromString(futureDate)), onTick, ~start=true, ())
+    let _ = RescriptCron.CronJob.make(
+      #JsDate(Js.Date.fromString(futureDate)),
+      onTick,
+      ~start=true,
+      (),
+    )
 
     RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate))
     Jest.runAllTimers()
 
-    expect(jobHasTicked.contents) -> toEqual(true)
+    expect(jobHasTicked.contents)->toEqual(true)
   })
 })
 
@@ -117,7 +132,7 @@ describe("changing CronJobs", () => {
     RescriptJestDateMock.advanceTo(Js.Date.fromString(postFutureDate))
     Jest.runAllTimers()
 
-    expect(jobHasTicked.contents && callbackHasTicked.contents) -> toEqual(true)
+    expect(jobHasTicked.contents && callbackHasTicked.contents)->toEqual(true)
   })
 
   test("fire all callbacks for a CronJob (without timer expiring)", () => {
@@ -143,7 +158,7 @@ describe("changing CronJobs", () => {
 
     expect(
       jobHasTicked.contents && (callbackHasTicked1.contents && callbackHasTicked2.contents),
-    ) -> toEqual(true)
+    )->toEqual(true)
   })
 
   test("changing time of CronJob with setTime and a CronTime", () => {
@@ -157,14 +172,12 @@ describe("changing CronJobs", () => {
     let time = RescriptCron.CronTime.make(#CronString("0 0 12 20 jan *"), ())
 
     let nextAssumedTick =
-      MomentRe.momentDefaultFormat("2010-01-01T12:00:00.000Z")
-      |> MomentRe.Moment.setDate(20)
-      |> MomentRe.Moment.setHour(12)
+      LuxonDateTime.fromISO("2010-01-01T12:00:00.000Z")->LuxonDateTime.set({day: 20, hour: 12})
 
     RescriptCron.setTime(job, time)
 
-    let nextTick = RescriptCron.nextMomentDates(job)->Array.get(0)
+    let nextTick = RescriptCron.nextDateTimes(job)->Array.getUnsafe(0)
 
-    expect(MomentRe.Moment.toJSON(nextTick)) -> toEqual(MomentRe.Moment.toJSON(nextAssumedTick))
+    expect(LuxonDateTime.toISO(nextTick))->toEqual(LuxonDateTime.toISO(nextAssumedTick))
   })
 })

@@ -173,6 +173,6 @@ describe("changing CronJobs", () => {
 
     let nextTick = RescriptCron.nextDateTimes(job)->Array.getUnsafe(0)
 
-    expect(LuxonDateTime.toISO(nextTick))->toEqual(LuxonDateTime.toISO(nextAssumedTick))
+    expect(LuxonDateTime.toMillis(nextTick))->toEqual(LuxonDateTime.toMillis(nextAssumedTick))
   })
 })

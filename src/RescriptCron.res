@@ -3,19 +3,19 @@ module CronJob = {
 
   @module("cron") @new
   external make: (
-    @unwrap [#CronString(string) | #JsDate(Js.Date.t)],
+    @unwrap [#CronString(string) | #JsDate(Date.t)],
     (unit => unit) => unit,
     unit => unit,
-    Js.nullable<bool>,
-    Js.nullable<string>,
-    Js.nullable<{..}>,
-    Js.nullable<bool>,
-    Js.nullable<int>,
-    Js.nullable<bool>,
+    Nullable.t<bool>,
+    Nullable.t<string>,
+    Nullable.t<{..}>,
+    Nullable.t<bool>,
+    Nullable.t<int>,
+    Nullable.t<bool>,
   ) => t = "CronJob"
 
   let make = (
-    cronTime: [#CronString(string) | #JsDate(Js.Date.t)],
+    cronTime: [#CronString(string) | #JsDate(Date.t)],
     onTick: (unit => unit) => unit,
     ~onComplete: unit => unit=_ => (),
     ~start: option<bool>=?,
@@ -30,12 +30,12 @@ module CronJob = {
       cronTime,
       onTick,
       onComplete,
-      Js.Nullable.fromOption(start),
-      Js.Nullable.fromOption(timezone),
-      Js.Nullable.fromOption(context),
-      Js.Nullable.fromOption(runOnInit),
-      Js.Nullable.fromOption(utcOffset),
-      Js.Nullable.fromOption(unrefTimeout),
+      Nullable.fromOption(start),
+      Nullable.fromOption(timezone),
+      Nullable.fromOption(context),
+      Nullable.fromOption(runOnInit),
+      Nullable.fromOption(utcOffset),
+      Nullable.fromOption(unrefTimeout),
     )
 }
 
@@ -44,48 +44,35 @@ module CronTime = {
 
   @module("cron") @new
   external make: (
-    @unwrap [#CronString(string) | #JsDate(Js.Date.t)],
-    Js.nullable<string>,
-    Js.nullable<int>,
+    @unwrap [#CronString(string) | #JsDate(Date.t)],
+    Nullable.t<string>,
+    Nullable.t<int>,
   ) => t = "CronTime"
 
   let make = (
-    cronTime: [#CronString(string) | #JsDate(Js.Date.t)],
+    cronTime: [#CronString(string) | #JsDate(Date.t)],
     ~timezone: option<string>=?,
     ~utcOffset: option<int>=?,
     (),
-  ) => make(cronTime, Js.Nullable.fromOption(timezone), Js.Nullable.fromOption(utcOffset))
+  ) => make(cronTime, Nullable.fromOption(timezone), Nullable.fromOption(utcOffset))
 }
 
 @module("cron") @val
-external sendAt: @unwrap [#CronString(string) | #JsDate(Js.Date.t)] => MomentRe.Moment.t = "sendAt"
+external sendAt: @unwrap [#CronString(string) | #JsDate(Date.t)] => LuxonDateTime.t = "sendAt"
 
 @module("cron") @val
-external timeout: @unwrap [#CronString(string) | #JsDate(Js.Date.t)] => float = "timeout"
+external timeout: @unwrap [#CronString(string) | #JsDate(Date.t)] => float = "timeout"
 
 @send external start: CronJob.t => unit = "start"
 @send external stop: CronJob.t => unit = "stop"
 @send external setTime: (CronJob.t, CronTime.t) => unit = "setTime"
-@send external lastDate: CronJob.t => Js.Date.t = "lastDate"
-@send external nextDates: (CronJob.t, int) => 'a = "nextDates"
+@send external lastDate: CronJob.t => Nullable.t<Date.t> = "lastDate"
+@send external nextDates: (CronJob.t, int) => array<LuxonDateTime.t> = "nextDates"
 
-let nextDates = (job, numberOfDates): array<MomentRe.Moment.t> => {
-  let next = nextDates(job, numberOfDates)
-  let convertToArray: 'a => 'b = %raw(
-    "possiblyArray => Array.isArray(possiblyArray) ? possiblyArray : [ possiblyArray ]"
-  )
-
-  // nextDates can return both an array of Moment's and a single Moment,
-  // depending of how to the time field on the CronJob was created.
-  // For consistency it is always returning an array here.
-
-  convertToArray(next)
-}
-
-let nextMomentDates = (~numberOfDates=1, job: CronJob.t) => nextDates(job, numberOfDates)
+let nextDateTimes = (~numberOfDates=1, job: CronJob.t) => nextDates(job, numberOfDates)
 
 let nextJsDates = (~numberOfDates=1, job: CronJob.t) =>
-  nextDates(job, numberOfDates)->Belt.Array.map(MomentRe.Moment.toDate)
+  nextDates(job, numberOfDates)->Array.map(LuxonDateTime.toJSDate)
 
 @send external fireOnTick: CronJob.t => unit = "fireOnTick"
 

@@ -16,6 +16,10 @@ module CronJob: {
   @param runOnInit This will immediately fire your [onTick] function as soon as the requisite initialization has happened. This option is set to [false] by default for backwards compatibility.
   @param utcOffset Set a UTC offset for your timezone instead of using the [timezone] parameter. Do not use [utcOffset] and [timezone] parameter together.
   @param unrefTimeout If you have code that keeps the event loop running and want to stop the node process when that finishes regardless of the state of your cronjob, you can do so making use of this parameter. This is off by default and cron will run as if it needs to control the event loop. For more information take a look at {{: https://nodejs.org/api/timers.html#timers_timeout_unref } timers#timers_timeout_unref } from the NodeJS docs.
+  @param waitForCompletion If set to [true], the job will wait for the previous execution to complete before starting a new one.
+  @param errorHandler A function called with the error if [onTick] throws. Defaults to [None].
+  @param name An optional name for the job, useful for debugging.
+  @param threshold An optional threshold in milliseconds. If the job is overdue by more than this value it will not fire.
   ")
   let make: (
     [#CronString(string) | #JsDate(Date.t)],
@@ -27,6 +31,10 @@ module CronJob: {
     ~runOnInit: bool=?,
     ~utcOffset: int=?,
     ~unrefTimeout: bool=?,
+    ~waitForCompletion: bool=?,
+    ~errorHandler: JsExn.t => unit=?,
+    ~name: string=?,
+    ~threshold: float=?,
     unit,
   ) => t
 }
@@ -104,3 +112,32 @@ external fireOnTick: CronJob.t => unit = "fireOnTick"
 )
 @send
 external addCallback: (CronJob.t, (unit => unit) => unit) => unit = "addCallback"
+
+@ocaml.doc(
+  " [nextDate(cronJob)] returns the next {!type:LuxonDateTime.t} that will trigger an [onTick] "
+)
+@send
+external nextDate: CronJob.t => LuxonDateTime.t = "nextDate"
+
+@ocaml.doc(" [isActive(cronJob)] returns [true] if the job is currently running ")
+@get
+external isActive: CronJob.t => bool = "isActive"
+
+@ocaml.doc(" [isCallbackRunning(cronJob)] returns [true] if an [onTick] callback is currently executing ")
+@get
+external isCallbackRunning: CronJob.t => bool = "isCallbackRunning"
+
+@ocaml.doc(
+  " Result type returned by {!val:validateCronExpression}. [valid] is [true] if the expression is valid, [error] is set if it is not. "
+)
+type validateCronResult = {
+  valid: bool,
+  error?: JsExn.t,
+}
+
+@ocaml.doc(
+  " [validateCronExpression(expr)] validates a cron expression string. Returns a {!type:validateCronResult} with [valid] set to [true] if the expression is valid. "
+)
+@module("cron")
+@val
+external validateCronExpression: string => validateCronResult = "validateCronExpression"

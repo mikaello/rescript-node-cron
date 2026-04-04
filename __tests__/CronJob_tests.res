@@ -175,4 +175,50 @@ describe("changing CronJobs", () => {
 
     expect(LuxonDateTime.toMillis(nextTick))->toEqual(LuxonDateTime.toMillis(nextAssumedTick))
   })
+
+  test("nextDate returns the next single date", () => {
+    let onTick = _ => ()
+
+    RescriptJestDateMock.advanceTo(Date.fromString("2010-01-01T12:00:00.000Z"))
+
+    let job = RescriptCron.CronJob.make(#JsDate(Date.fromString(futureDate)), onTick, ())
+    let time = RescriptCron.CronTime.make(#CronString("0 0 12 20 jan *"), ())
+
+    let nextAssumedTick =
+      LuxonDateTime.fromISO("2010-01-01T12:00:00.000Z")->LuxonDateTime.set({day: 20, hour: 12})
+
+    RescriptCron.setTime(job, time)
+
+    let nextTick = RescriptCron.nextDate(job)
+
+    expect(LuxonDateTime.toMillis(nextTick))->toEqual(LuxonDateTime.toMillis(nextAssumedTick))
+  })
+
+  test("isActive reflects job start and stop state", () => {
+    let onTick = _ => ()
+
+    RescriptJestDateMock.advanceTo(Date.fromString(pastDate))
+
+    let job = RescriptCron.CronJob.make(#JsDate(Date.fromString(futureDate)), onTick, ())
+
+    expect(RescriptCron.isActive(job))->toEqual(false)->ignore
+
+    RescriptCron.start(job)
+    expect(RescriptCron.isActive(job))->toEqual(true)->ignore
+
+    RescriptCron.stop(job)
+    expect(RescriptCron.isActive(job))->toEqual(false)
+  })
+})
+
+describe("validateCronExpression", () => {
+  test("returns valid for a correct cron expression", () => {
+    let result = RescriptCron.validateCronExpression("0 0 * * *")
+    expect(result.valid)->toEqual(true)
+  })
+
+  test("returns invalid for a malformed cron expression", () => {
+    let result = RescriptCron.validateCronExpression("not-a-cron")
+    expect(result.valid)->toEqual(false)
+  })
 })

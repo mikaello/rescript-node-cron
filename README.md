@@ -32,34 +32,34 @@ Then add `rescript-cron` as a dependency in `rescript.json`:
 
 ```diff
 {
-+  "bs-dependencies": ["rescript-cron"]
++  "dependencies": ["rescript-cron"]
 }
 ```
 
 ## Example
 
-```reason
+```rescript
 open RescriptCron
 
 // Make a job that will fire every second when started
 let job =
   CronJob.make(
-    `CronString("* * * * * *"),
-    _ => Js.log("Just doing my job"),
+    #CronString("* * * * * *"),
+    _ => Console.log("Just doing my job"),
     (),
-  );
+  )
 
 // Firing every second, printing 'Just doing my job'
-start(job);
+start(job)
 
 let time =
-  CronTime.make(`JsDate(Js.Date.fromString("2021-04-11T10:20:30Z")), ());
+  CronTime.make(#JsDate(Date.fromString("2021-04-11T10:20:30Z")), ())
 
 // setTime will stop the current job, and change when it will fire next
-setTime(job, time);
+setTime(job, time)
 
 // It will now fire once in april 2021
-start(job);
+start(job)
 ```
 
 [The tests](https://github.com/mikaello/rescript-node-cron/tree/master/__tests__)

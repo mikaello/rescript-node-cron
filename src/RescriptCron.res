@@ -12,6 +12,10 @@ module CronJob = {
     Nullable.t<bool>,
     Nullable.t<int>,
     Nullable.t<bool>,
+    Nullable.t<bool>,
+    Nullable.t<JsExn.t => unit>,
+    Nullable.t<string>,
+    Nullable.t<float>,
   ) => t = "CronJob"
 
   let make = (
@@ -22,8 +26,12 @@ module CronJob = {
     ~timezone: option<string>=?,
     ~context: option<{..}>=?,
     ~runOnInit: option<bool>=?,
-    ~utcOffset: option<int>=?, // Could also be string, but that complicates
+    ~utcOffset: option<int>=?,
     ~unrefTimeout: option<bool>=?,
+    ~waitForCompletion: option<bool>=?,
+    ~errorHandler: option<JsExn.t => unit>=?,
+    ~name: option<string>=?,
+    ~threshold: option<float>=?,
     (),
   ) =>
     make(
@@ -36,6 +44,10 @@ module CronJob = {
       Nullable.fromOption(runOnInit),
       Nullable.fromOption(utcOffset),
       Nullable.fromOption(unrefTimeout),
+      Nullable.fromOption(waitForCompletion),
+      Nullable.fromOption(errorHandler),
+      Nullable.fromOption(name),
+      Nullable.fromOption(threshold),
     )
 }
 
@@ -78,3 +90,17 @@ let nextJsDates = (~numberOfDates=1, job: CronJob.t) =>
 
 @send
 external addCallback: (CronJob.t, (unit => unit) => unit) => unit = "addCallback"
+
+@send external nextDate: CronJob.t => LuxonDateTime.t = "nextDate"
+
+@get external isActive: CronJob.t => bool = "isActive"
+
+@get external isCallbackRunning: CronJob.t => bool = "isCallbackRunning"
+
+type validateCronResult = {
+  valid: bool,
+  error?: JsExn.t,
+}
+
+@module("cron") @val
+external validateCronExpression: string => validateCronResult = "validateCronExpression"

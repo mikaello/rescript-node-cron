@@ -23,7 +23,7 @@
   "devDependencies": {
     "@glennsl/rescript-jest": "0.13.1",
     "@ristostevcev/bs-odoc": "2.2.1",
-    "rescript": "12.2.0",
+    "rescript": "12.3.0",
     "rescript-jest-date-mock": "2.0.1"
   },
   "dependencies": {

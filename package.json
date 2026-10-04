@@ -24,7 +24,7 @@
     "@glennsl/rescript-jest": "0.13.1",
     "@ristostevcev/bs-odoc": "2.2.1",
     "rescript": "12.3.1",
-    "rescript-jest-date-mock": "2.0.1"
+    "rescript-jest-date-mock": "2.0.2"
   },
   "dependencies": {
     "cron": "4.4.0"
